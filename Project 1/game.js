@@ -44,7 +44,7 @@ function keydownEventHandler(e) {
     firefighter.position.x += 10;
   }
 
-  if (e.keyCode == 32 && firefighter.position.x < fire.position.x + 50 &&
+  if (e.keyCode == 13 && firefighter.position.x < fire.position.x + 50 &&
   firefighter.position.x > fire.position.x - 50 && firefighter.position.y
   < fire.position.y + 50 && firefighter.position.y > fire.position.y - 50)
   {
@@ -57,6 +57,8 @@ function keydownEventHandler(e) {
     {
       stage.removeChild(fire);
       stage.removeChild(firefighter);
+      gameover.position.x = 200;
+      gameover.position.y = 200;
       stage.addChild(gameover);
     }
   }
