@@ -10,6 +10,7 @@ stage.addChild(background);
 var score = 0;
 var scoreoutput = new PIXI.Text("Fires destroyed: 0");
 stage.addChild(scoreoutput);
+var endtext = new PIXI.Text("Good job. You saved the forest");
 
 var firefighter = new PIXI.Sprite(PIXI.Texture.fromImage("firefighter.png"));
 var fire = new PIXI.Sprite(PIXI.Texture.fromImage("fire.png"));
@@ -57,9 +58,13 @@ function keydownEventHandler(e) {
     {
       stage.removeChild(fire);
       stage.removeChild(firefighter);
+      stage.removeChild(scoreoutput); 
       gameover.position.x = 200;
       gameover.position.y = 200;
       stage.addChild(gameover);
+      stage.addChild(endtext);
+      endtext.position.x = 100;
+      endtext.posision.y = 150;
     }
   }
 }
