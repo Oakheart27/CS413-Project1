@@ -3,7 +3,7 @@ var gameport = document.getElementById("gameport");
 var renderer = PIXI.autoDetectRenderer(1675, 500, {backgroundColor: 0x33cc33});
 gameport.appendChild(renderer.view);
 
-// creates containers 
+// creates containers
 var stage = new PIXI.Container();
 var race = new PIXI.Container();
 
@@ -68,6 +68,16 @@ function playHandler(e)
   PIXI.loader
     .add("assets.json")
     .load(ready);
+
+  // Play background music
+  PIXI.sound.Sound.from({
+      url: 'music.mp3',
+      autoPlay: true,
+      loop: true,
+      complete: function() {
+          console.log('Sound finished');
+      }
+    })
 }
 
 function ready()
@@ -88,9 +98,8 @@ function ready()
   var frames = [];
 
   // adds images of runner to frame array
-  for (var i=1; i<=5; i++) {
-    frames.push(PIXI.Texture.fromFrame('runner' + i + '.png'));
-  }
+  var sheet = PIXI.Loader.shared.resources["assets.json"].spritesheet;
+  var person = new PIXI.AnimatedSprite(sheet.animations["runner"]);
 
   // creates movie clip and runs through array
   person = new PIXI.extras.MovieClip(frames);
